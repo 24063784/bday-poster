@@ -1,0 +1,380 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Garamond', serif;
+    background: #f5f5f5;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.editor-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 0.95em;
+    color: #666;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Controls Section */
+.controls {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.controls h3 {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9em;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-family: 'Segoe UI', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Poster Preview Section */
+.poster-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poster {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 8.5 / 11;
+    background: linear-gradient(135deg, #e0a3ff 0%, #f5d5ff 100%);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+.poster-confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffd700, rgba(255, 215, 0, 0)),
+        radial-gradient(2px 2px at 60px 70px, #ff69b4, rgba(255, 105, 180, 0)),
+        radial-gradient(1px 1px at 50px 50px, #00bfff, rgba(0, 191, 255, 0)),
+        radial-gradient(1px 1px at 130px 80px, #ff6347, rgba(255, 99, 71, 0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.1;
+}
+
+.poster-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.poster-header {
+    margin-bottom: 40px;
+}
+
+.poster-label {
+    font-size: 1.2em;
+    color: rgba(107, 33, 168, 0.7);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.poster-name {
+    font-size: 3.5em;
+    color: #6b21a8;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.poster-age-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c084fc 0%, #e879f9 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+    box-shadow: 0 10px 30px rgba(107, 33, 168, 0.3);
+    position: relative;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.age-number {
+    font-size: 4em;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.poster-message {
+    font-size: 1.3em;
+    color: #6b21a8;
+    line-height: 1.6;
+    margin: 30px 0;
+    font-style: italic;
+    max-width: 600px;
+}
+
+.poster-decorations {
+    margin-top: 30px;
+    font-size: 2em;
+    letter-spacing: 20px;
+}
+
+.decoration {
+    display: inline-block;
+    animation: bounce 0.6s ease-in-out infinite;
+}
+
+.decoration:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.decoration:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+    padding-top: 20px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Theme Colors */
+.poster.purple-theme {
+    background: linear-gradient(135deg, #e0a3ff 0%, #f5d5ff 100%);
+}
+
+.poster.purple-theme .poster-name,
+.poster.purple-theme .poster-label,
+.poster.purple-theme .poster-message {
+    color: #6b21a8;
+}
+
+.poster.purple-theme .poster-age-circle {
+    background: linear-gradient(135deg, #c084fc 0%, #e879f9 100%);
+}
+
+.poster.pink-theme {
+    background: linear-gradient(135deg, #ffc0cb 0%, #ffb3d9 100%);
+}
+
+.poster.pink-theme .poster-name,
+.poster.pink-theme .poster-label,
+.poster.pink-theme .poster-message {
+    color: #c2185b;
+}
+
+.poster.pink-theme .poster-age-circle {
+    background: linear-gradient(135deg, #ff69b4 0%, #ff85c0 100%);
+}
+
+.poster.blue-theme {
+    background: linear-gradient(135deg, #add8e6 0%, #87ceeb 100%);
+}
+
+.poster.blue-theme .poster-name,
+.poster.blue-theme .poster-label,
+.poster.blue-theme .poster-message {
+    color: #01579b;
+}
+
+.poster.blue-theme .poster-age-circle {
+    background: linear-gradient(135deg, #4287f5 0%, #6ba3ff 100%);
+}
+
+.poster.gold-theme {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+}
+
+.poster.gold-theme .poster-name,
+.poster.gold-theme .poster-label,
+.poster.gold-theme .poster-message {
+    color: #856404;
+}
+
+.poster.gold-theme .poster-age-circle {
+    background: linear-gradient(135deg, #ffa500 0%, #ffb84d 100%);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .poster {
+        aspect-ratio: auto;
+        min-height: 600px;
+        padding: 40px 20px;
+    }
+
+    .poster-name {
+        font-size: 2.5em;
+    }
+
+    .poster-age-circle {
+        width: 140px;
+        height: 140px;
+    }
+
+    .age-number {
+        font-size: 3em;
+    }
+
+    .poster-message {
+        font-size: 1.1em;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    .editor-container {
+        max-width: 100%;
+    }
+
+    .controls, header, footer {
+        display: none;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+        margin: 0;
+        gap: 0;
+    }
+
+    .poster-preview {
+        width: 100%;
+    }
+
+    .poster {
+        box-shadow: none;
+        border-radius: 0;
+        width: 8.5in;
+        height: 11in;
+    }
+}
+
